@@ -23,7 +23,7 @@ const ModalOffer = ({ open, onClose }: ModalOfferProps) => {
           Попробуй наш суперпупердумпемегагига метод
         </Typography.Text>
         <Gap size={"2xl"} />
-        <Button view="accent" onClick={() => navigate("/subscripe")}>
+        <Button view="accent" onClick={() => navigate("/subscription")}>
           Посмотреть
         </Button>
       </Modal.Content>

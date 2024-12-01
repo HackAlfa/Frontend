@@ -1,7 +1,7 @@
 import { Typography } from "@alfalab/core-components/typography";
 import { Gap } from "@alfalab/core-components/gap";
 import { Button } from "@alfalab/core-components/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "@alfalab/core-components/modal";
 import {
   Confirmation,
@@ -11,6 +11,8 @@ import { Select } from "@alfalab/core-components/select";
 import { SuperEllipse } from "@alfalab/core-components/icon-view/super-ellipse";
 import { CrossMediumMIcon } from "@alfalab/icons-glyph/CrossMediumMIcon";
 import { CheckmarkMIcon } from "@alfalab/icons-glyph/CheckmarkMIcon";
+import { Link } from "@alfalab/core-components/link";
+import { StarMIcon } from "@alfalab/icons-glyph/StarMIcon";
 
 const InstalmentsPage = () => {
   const variants = [
@@ -25,6 +27,7 @@ const InstalmentsPage = () => {
   const [variant, setVariant] = useState(variants[0]);
   const [shownSuccessScreen, setShownSuccessScreen] = useState(false);
   const [shownErrorScreen, setShownErrorScreen] = useState(false);
+  const json = JSON.parse(localStorage.getItem("formData") || "");
 
   const {
     confirmationState,
@@ -66,6 +69,23 @@ const InstalmentsPage = () => {
   };
 
   const [open, setOpen] = useState(false);
+
+  const mobileAppUrl = "https://alfabank.ru/apps/amobile/";
+  const [showLink, setShowLink] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      const timer = setTimeout(() => {
+        setShowLink(true); // Устанавливаем состояние в true через 3 секунды после открытия модалки
+      }, 5000);
+
+      // Очистка таймера при закрытии модалки
+      return () => {
+        clearTimeout(timer);
+        setShowLink(false); // Сброс состояния при закрытии
+      };
+    }
+  }, [open]);
 
   return (
     <>
@@ -127,6 +147,19 @@ const InstalmentsPage = () => {
                   <Typography.Text view="primary-medium" weight="bold">
                     Введён корректный код
                   </Typography.Text>
+
+                  <Typography.Text view="primary-medium">
+                    <Link
+                      view="default"
+                      leftAddons={<StarMIcon />}
+                      href={
+                        json?.props.mobileApp ? "/subscription" : mobileAppUrl
+                      }
+                      target="_blank"
+                    >
+                      В приложении подписание в два раза быстрее
+                    </Link>
+                  </Typography.Text>
                 </div>
               </div>
             </div>
@@ -160,22 +193,54 @@ const InstalmentsPage = () => {
                   <Typography.Text view="primary-medium" weight="bold">
                     Не удалось подписать
                   </Typography.Text>
+
+                  <Typography.Text view="primary-medium">
+                    <Link
+                      view="default"
+                      leftAddons={<StarMIcon />}
+                      href={
+                        json?.props.mobileApp ? "/subscription" : mobileAppUrl
+                      }
+                      target="_blank"
+                    >
+                      В приложении подписание без возможных ошибок
+                    </Link>
+                  </Typography.Text>
                 </div>
               </div>
             </div>
           ) : (
-            <Confirmation
-              screen={confirmationScreen}
-              state={confirmationState}
-              alignContent="center"
-              blockSmsRetry={confirmationBlockSmsRetry}
-              onChangeState={setConfirmationState}
-              onChangeScreen={setConfirmationScreen}
-              onInputFinished={handleInputFinished}
-              onSmsRetryClick={handleSmsRetryClick}
-              onTempBlockFinished={handleTempBlockFinished}
-              phone="+7 ··· ··· 07 24"
-            />
+            <div style={{ textAlign: "center" }}>
+              <Confirmation
+                screen={confirmationScreen}
+                state={confirmationState}
+                alignContent="center"
+                blockSmsRetry={confirmationBlockSmsRetry}
+                onChangeState={setConfirmationState}
+                onChangeScreen={setConfirmationScreen}
+                onInputFinished={handleInputFinished}
+                onSmsRetryClick={handleSmsRetryClick}
+                onTempBlockFinished={handleTempBlockFinished}
+                phone="+7 ··· ··· 07 24"
+              />
+              {showLink && (
+                <>
+                  <Gap size={"m"} />
+                  <Typography.Text view="primary-medium">
+                    <Link
+                      view="default"
+                      leftAddons={<StarMIcon />}
+                      href={
+                        json?.props.mobileApp ? "/subscription" : mobileAppUrl
+                      }
+                      target="_blank"
+                    >
+                      В приложении подписание без ожидания
+                    </Link>
+                  </Typography.Text>
+                </>
+              )}
+            </div>
           )}
         </Modal.Content>
       </Modal>

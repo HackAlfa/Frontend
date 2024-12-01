@@ -9,7 +9,7 @@ const Banner = () => {
       view="accent"
       block={true}
       style={{ textAlign: "left" }}
-      onClick={() => navigate("/subscripe")}
+      onClick={() => navigate("/subscription")}
     >
       Братан, проверь новый метод подписания!
     </Button>

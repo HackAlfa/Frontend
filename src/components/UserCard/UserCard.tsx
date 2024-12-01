@@ -6,26 +6,56 @@ import { NumberInput } from "@alfalab/core-components/number-input";
 import { Checkbox } from "@alfalab/core-components/checkbox";
 import { useNavigate } from "react-router";
 
-const UserCard = () => {
-  const segmentOptions = [
-    { key: "1", content: "Малый бизнес" },
-    { key: "2", content: "Средний бизнес" },
-    { key: "3", content: "Крупный бизнес" },
-  ];
+// type segmentProps = "Малый бизнес" | "Средний бизнес" | "Крупный бизнес";
 
-  const roleOptions = [
-    { key: "1", content: "ЕИО" },
-    { key: "2", content: "Сотрудник" },
-  ];
+// type roleProps = "ЕИО" | "Сотрудник";
 
-  const methodOptions = [
-    { key: "1", content: "SMS" },
-    { key: "2", content: "PayControl" },
-    { key: "3", content: "КЭП на токене" },
-    { key: "4", content: "КЭП в приложении" },
-  ];
+// type currentMethodProps =
+//   | "SMS"
+//   | "PayControl"
+//   | "КЭП на токене"
+//   | "КЭП в приложении";
 
+type documentCount = {
+  mobile: number; // Количество подписанных документов в мобильном приложении
+  web: number; // Количество подписанных документов в вебе
+};
+
+type signaturesProps = {
+  common: documentCount;
+  special: documentCount;
+};
+
+// type AvailableMethodProps =
+//   | "SMS"
+//   | "PayControl"
+//   | "КЭП на токене"
+//   | "КЭП в приложении";
+
+type UserCardProps = {
+  clientId: string; // ИД пользователя
+  organizationId: string; // ИД организациии
+  segment: string; // Сегмент организации: "Малый бизнес", "Средний бизнес", "Крупный бизнес"
+  role: string; // Роль уполномоченного лица: "ЕИО", "Сотрудник"
+  organizations: number; // Общее количество организаций у уполномоченного лица: 1..300
+  currentMethod: string; // Действующий способ подписания."SMS", "PayControl", "КЭП на токене", "КЭП в приложении"
+  mobileApp: boolean; // Наличие мобильного приложения
+  signatures: signaturesProps;
+  availableMethods: string[]; // Уже подключенные способы подписания."SMS", "PayControl", "КЭП на токене", "КЭП в приложении"
+  claims: number;
+};
+
+const UserCard = (props: UserCardProps) => {
   const navigate = useNavigate();
+
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    const jsonData = {
+      props,
+    };
+    localStorage.setItem("formData", JSON.stringify(jsonData));
+    navigate("/main");
+  };
 
   return (
     <div
@@ -37,87 +67,80 @@ const UserCard = () => {
         gap: 5,
       }}
     >
-      <Typography.TitleResponsive tag="h2">Клиент 1</Typography.TitleResponsive>
+      <Typography.TitleResponsive tag="h2">
+        {`Клиент ${props.clientId}`}
+      </Typography.TitleResponsive>
       <Input
-        value="clientId"
+        value={props.clientId}
         label="ИД пользователя"
         disabled={true}
         block={true}
       />
       <Input
-        value="organizationId"
+        value={props.organizationId}
         label="ИД организациии"
         disabled={true}
         block={true}
       />
-      <Select
-        options={segmentOptions}
+      <Input
         label="Сегмент организации"
-        selected={{ key: "2", content: "Средний бизнес" }}
+        value={props.segment}
         disabled={true}
         block={true}
       />
-      <Select
-        options={roleOptions}
+      <Input
         label="Роль уполномоченного лица"
-        selected={{ key: "2", content: "Сотрудник" }}
+        value={props.role}
         disabled={true}
         block={true}
       />
       <NumberInput
-        value={4545}
+        value={props.organizations}
         label="Общее количество организаций у уполномоченного лица"
         disabled={true}
         block={true}
       />
-      <Select
-        options={methodOptions}
+      <Input
         label="Действующий способ подписания"
-        selected={{ key: "1", content: "SMS" }}
+        value={props.currentMethod}
         disabled={true}
         block={true}
       />
       <Checkbox
-        checked={true}
+        checked={props.mobileApp}
         disabled={true}
         label="Наличие мобильного приложения"
         block={true}
       />
       <Input
-        value="Мобайл: 3, Веб: 10"
+        value={`Мобайл: ${props.signatures.common.mobile}, Веб: ${props.signatures.common.web}`}
         label="Подписанные Документы (Базовые)"
         disabled={true}
         block={true}
       />
       <Input
-        value="Мобайл: 5, Веб: 6"
+        value={`Мобайл: ${props.signatures.special.mobile}, Веб: ${props.signatures.special.web}`}
         label="Подписанные Документы (Особые)"
         disabled={true}
         block={true}
       />
       <Select
-        options={methodOptions}
+        options={[]}
         label="Уже подключенные способы подписания"
-        selected={[
-          { key: "1", content: "SMS" },
-          { key: "2", content: "PayControl" },
-        ]}
+        selected={props.availableMethods.map((a, i) => {
+          return { key: String(i), content: a };
+        })}
         disabled={true}
         block={true}
       />
       <NumberInput
-        value={34}
+        value={props.claims}
         label="Уже подключенные способы подписания"
         disabled={true}
         block={true}
       />
 
-      <Button
-        type="submit"
-        view="accent"
-        block={true}
-        onClick={() => navigate("/main")}
-      >
+      <Button type="submit" view="accent" block={true} onClick={handleSubmit}>
         Войти в приложение
       </Button>
     </div>

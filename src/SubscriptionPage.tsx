@@ -1,13 +1,7 @@
-const SubscriptionPage = () => {
-  //   const data = JSON.parse(localStorage.getItem("formData"));
+import subscriptionImage from "./assets/subscription.png";
 
-  return (
-    <img
-      style={{ width: "100%", height: 300 }}
-      src="./assets/subscription.png"
-      alt=""
-    />
-  );
+const SubscriptionPage = () => {
+  return <img style={{ width: "100%" }} src={subscriptionImage} alt="" />;
 };
 
 export default SubscriptionPage;

@@ -9,6 +9,7 @@ import { Button } from "@alfalab/core-components/button";
 import PaymentsPage from "./PaymentsPage";
 import InstalmentsPage from "./InstalmentsPage";
 import ProductsPage from "./ProductsPage";
+import PayControlPage from "./PayControlPage";
 
 function App() {
   const location = useLocation();
@@ -83,6 +84,7 @@ function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/instalments" element={<InstalmentsPage />} />
         <Route path="/subscription" element={<SubscriptionPage />} />
+        <Route path="/pay-control" element={<PayControlPage />} />
       </Routes>
     </div>
   );

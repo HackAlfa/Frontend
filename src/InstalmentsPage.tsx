@@ -152,7 +152,7 @@ const InstalmentsPage = () => {
                       view="default"
                       leftAddons={<StarMIcon />}
                       href={
-                        json?.props.mobileApp ? "/subscription" : mobileAppUrl
+                        json?.props.mobileApp ? "/pay-control" : mobileAppUrl
                       }
                       target="_blank"
                     >
@@ -198,7 +198,7 @@ const InstalmentsPage = () => {
                       view="default"
                       leftAddons={<StarMIcon />}
                       href={
-                        json?.props.mobileApp ? "/subscription" : mobileAppUrl
+                        json?.props.mobileApp ? "/pay-control" : mobileAppUrl
                       }
                       target="_blank"
                     >
@@ -230,7 +230,7 @@ const InstalmentsPage = () => {
                       view="default"
                       leftAddons={<StarMIcon />}
                       href={
-                        json?.props.mobileApp ? "/subscription" : mobileAppUrl
+                        json?.props.mobileApp ? "/pay-control" : mobileAppUrl
                       }
                       target="_blank"
                     >

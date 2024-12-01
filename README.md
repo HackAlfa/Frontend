@@ -1,50 +1,35 @@
-# React + TypeScript + Vite
+# React Vite Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Этот проект представляет собой приложение на React, созданное с использованием Vite как сборщика. В этом README описаны шаги по установке Node.js, настройке проекта и запуску приложения.
 
-Currently, two official plugins are available:
+## Требования
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Установленный [Node.js](https://nodejs.org/) (у нас версия 22.11.0)
+- Установленный [npm](https://www.npmjs.com/) (обычно устанавливается вместе с Node.js)
 
-## Expanding the ESLint configuration
+## Установка Node.js
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Перейдите на [страницу загрузки Node.js](https://nodejs.org/).
+2. Выберите вашу операционную систему (Windows, Mac или Linux) и следуйте инструкциям для установки.
+3. После завершения установки откройте терминал и выполните следующую команду, чтобы убедиться, что Node.js и npm установлены правильно:
 
-- Configure the top-level `parserOptions` property like this:
+   ```bash
+   node --version
+   npm --version
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Клонирование репозитория
+Сначала клонируйте репозиторий на ваш локальный компьютер:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+```git clone https://github.com/HackAlfa/Frontend.git```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```cd Frontend```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Запуск приложения
+Убедитесь, что вы находитесь в корневой директории проекта.
+
+Установите зависимости:
+```npm install```
+
+Запустите приложение в режиме разработки:
+```npm run dev```
+Откройте браузер и перейдите по адресу http://localhost:3000 (порт может отличаться, проверьте вывод в терминале).

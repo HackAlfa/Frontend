@@ -14,7 +14,7 @@ const MainPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setOpenModalOffer(true);
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -39,7 +39,11 @@ const MainPage = () => {
         <Skeleton visible={true} style={{ width: 300, height: 200 }}></Skeleton>
       </div>
 
-      <ModalOffer open={openModalOffer} onClose={closeModalOffer} />
+      <ModalOffer
+        context="Главная"
+        open={openModalOffer}
+        onClose={closeModalOffer}
+      />
     </>
   );
 };

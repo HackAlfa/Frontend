@@ -76,13 +76,12 @@ const InstalmentsPage = () => {
   useEffect(() => {
     if (open) {
       const timer = setTimeout(() => {
-        setShowLink(true); // Устанавливаем состояние в true через 3 секунды после открытия модалки
-      }, 5000);
+        setShowLink(true);
+      }, 2000);
 
-      // Очистка таймера при закрытии модалки
       return () => {
         clearTimeout(timer);
-        setShowLink(false); // Сброс состояния при закрытии
+        setShowLink(false);
       };
     }
   }, [open]);

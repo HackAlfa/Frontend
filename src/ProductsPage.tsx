@@ -10,7 +10,7 @@ const ProductsPage = () => {
         Здесь мы прогнозируем другие вещи - наша платформа может все!
       </Typography.Title>
       <Gap size={"m"} />
-      <Banner />
+      <Banner centext="Продукты" />
       <Gap size="2xl" />
       <div
         style={{

@@ -151,9 +151,7 @@ const InstalmentsPage = () => {
                     <Link
                       view="default"
                       leftAddons={<StarMIcon />}
-                      href={
-                        json?.props.mobileApp ? "/pay-control" : mobileAppUrl
-                      }
+                      href={json?.mobileApp ? "/pay-control" : mobileAppUrl}
                       target="_blank"
                     >
                       В приложении подписание в два раза быстрее
@@ -197,9 +195,7 @@ const InstalmentsPage = () => {
                     <Link
                       view="default"
                       leftAddons={<StarMIcon />}
-                      href={
-                        json?.props.mobileApp ? "/pay-control" : mobileAppUrl
-                      }
+                      href={json?.mobileApp ? "/pay-control" : mobileAppUrl}
                       target="_blank"
                     >
                       В приложении подписание без возможных ошибок
@@ -229,9 +225,7 @@ const InstalmentsPage = () => {
                     <Link
                       view="default"
                       leftAddons={<StarMIcon />}
-                      href={
-                        json?.props.mobileApp ? "/pay-control" : mobileAppUrl
-                      }
+                      href={json?.mobileApp ? "/pay-control" : mobileAppUrl}
                       target="_blank"
                     >
                       В приложении подписание без ожидания

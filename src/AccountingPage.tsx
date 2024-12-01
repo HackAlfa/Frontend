@@ -8,7 +8,7 @@ const AccountingPage = () => {
     <>
       <Typography.Title tag="h1">Бухгалтерия</Typography.Title>
       <Gap size={"m"} />
-      <Banner centext="Бухгалтерия" />
+      <Banner centext="бухгалтерия" />
       <Gap size="2xl" />
       <div
         style={{

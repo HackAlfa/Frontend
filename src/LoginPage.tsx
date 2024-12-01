@@ -4,48 +4,86 @@ import UserCard from "./components/userCard/UserCard";
 
 const json = [
   {
-    clientId: "client1", // ИД пользователя
-    organizationId: "organization1", // ИД организациии
-    segment: "Малый бизнес", // Сегмент организации: "Малый бизнес", "Средний бизнес", "Крупный бизнес"
-    role: "ЕИО", // Роль уполномоченного лица: "ЕИО", "Сотрудник"
-    organizations: 3, // Общее количество организаций у уполномоченного лица: 1..300
-    currentMethod: "SMS", // Действующий способ подписания."SMS", "PayControl", "КЭП на токене", "КЭП в приложении"
-    mobileApp: true, // Наличие мобильного приложения
+    clientId: "client_948749",
+    organizationId: "org_1411527",
+    segment: "Крупный бизнес",
+    role: "Сотрудник",
+    organizations: 4,
+    currentMethod: "SMS",
+    mobileApp: true,
     signatures: {
-      // Подписанные ранее типы документов
       common: {
-        mobile: 3, // Количество подписанных базовых документов в мобайле
-        web: 10, // Количество подписанных базовых документов в вебе
+        mobile: 6,
+        web: 14,
       },
       special: {
-        mobile: 5, // Количество подписанных документов особой важности в мобайле
-        web: 6, // Количество подписанных документов особой важности в вебе
+        mobile: 0,
+        web: 0,
       },
     },
-    availableMethods: ["SMS"], // Уже подключенные способы подписания."SMS", "PayControl", "КЭП на токене", "КЭП в приложении"
-    claims: 0, // Наличие обращений в банк по причине проблем с использованием СМС
+    availableMethods: [
+      "PayControl",
+      "SMS",
+      "КЭП в приложении",
+      "КЭП на токене",
+    ],
+    claims: 0,
+    target: "PayControl",
+    context: "бухгалтерия",
   },
   {
-    clientId: "client2", // ИД пользователя
-    organizationId: "organization2", // ИД организациии
-    segment: "Малый бизнес", // Сегмент организации: "Малый бизнес", "Средний бизнес", "Крупный бизнес"
-    role: "ЕИО", // Роль уполномоченного лица: "ЕИО", "Сотрудник"
-    organizations: 3, // Общее количество организаций у уполномоченного лица: 1..300
-    currentMethod: "SMS", // Действующий способ подписания."SMS", "PayControl", "КЭП на токене", "КЭП в приложении"
-    mobileApp: false, // Наличие мобильного приложения
+    clientId: "cl1235",
+    organizationId: "org_7456",
+    segment: "Крупный бизнес",
+    role: "ЕИО",
+    organizations: 7,
+    currentMethod: "SMS",
+    mobileApp: true,
     signatures: {
-      // Подписанные ранее типы документов
       common: {
-        mobile: 3, // Количество подписанных базовых документов в мобайле
-        web: 10, // Количество подписанных базовых документов в вебе
+        mobile: 3,
+        web: 10,
       },
       special: {
-        mobile: 5, // Количество подписанных документов особой важности в мобайле
-        web: 6, // Количество подписанных документов особой важности в вебе
+        mobile: 5,
+        web: 6,
       },
     },
-    availableMethods: ["SMS"], // Уже подключенные способы подписания."SMS", "PayControl", "КЭП на токене", "КЭП в приложении"
-    claims: 0, // Наличие обращений в банк по причине проблем с использованием СМС
+    availableMethods: [
+      "PayControl",
+      "SMS",
+      "КЭП в приложении",
+      "КЭП на токене",
+    ],
+    claims: 0,
+    context: "бухгалтерия",
+  },
+  {
+    clientId: "client_356787",
+    organizationId: "org_734053",
+    segment: "Крупный бизнес",
+    role: "ЕИО",
+    organizations: 72,
+    currentMethod: "SMS",
+    mobileApp: true,
+    signatures: {
+      common: {
+        mobile: 100,
+        web: 18,
+      },
+      special: {
+        mobile: 100,
+        web: 9,
+      },
+    },
+    availableMethods: [
+      "PayControl",
+      "SMS",
+      "КЭП в приложении",
+      "КЭП на токене",
+    ],
+    claims: 0,
+    context: "главная страница",
   },
 ];
 

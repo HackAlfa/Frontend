@@ -13,8 +13,7 @@ type ModalOfferProps = {
 };
 
 const ModalOffer = ({ open, onClose, context }: ModalOfferProps) => {
-  let json = JSON.parse(localStorage.getItem("formData") || "");
-  json = { ...json, centext: context };
+  const json = localStorage.getItem("formData") || "";
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -25,33 +24,31 @@ const ModalOffer = ({ open, onClose, context }: ModalOfferProps) => {
     import.meta.env.BACKEND_ADDRESS || "http://localhost:8010";
 
   useEffect(() => {
-    const fetchModalText = async () => {
+    const fetchBannerText = async () => {
       try {
-        const response = await fetch(backendAddress + "/recomendation/", {
+        const response = await fetch("http://localhost:8010/recomendation/", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-          body: JSON.stringify(json),
+          body: json,
         });
         console.log(response);
+
+        console.log(json);
 
         const data = await response.json();
         console.log(data);
 
-        setModalText(data.text);
+        setTitleText(`Мы реакомендуем Вам ${data.prediction}`);
+        setModalText("Подключите более безопасный метод подписания");
       } catch (error) {
-        console.error("Ошибка при получении текста модалки:", error);
-        setTitleText("Подключите более безопасный метод подписания");
-        setModalText(
-          "Это позволит вам подписывать номного быстрее и повысит безопасность"
-        );
+        console.error("Ошибка при получении текста баннера:", error);
+        setTitleText(`Мы реакомендуем Вам сменить метод подписания`);
+        setModalText("Подключите более безопасный метод подписания");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchModalText();
+    fetchBannerText();
   }, []);
 
   return (

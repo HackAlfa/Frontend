@@ -40,7 +40,7 @@ const MainPage = () => {
       </div>
 
       <ModalOffer
-        context="Главная"
+        context="главная страница"
         open={openModalOffer}
         onClose={closeModalOffer}
       />

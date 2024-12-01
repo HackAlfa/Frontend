@@ -53,7 +53,7 @@ const UserCard = (props: UserCardProps) => {
     const jsonData = {
       props,
     };
-    localStorage.setItem("formData", JSON.stringify(jsonData));
+    localStorage.setItem("formData", JSON.stringify(jsonData.props));
     navigate("/main");
   };
 

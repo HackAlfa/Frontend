@@ -8,8 +8,7 @@ type BannerProps = {
 };
 
 const Banner = ({ centext }: BannerProps) => {
-  let json = JSON.parse(localStorage.getItem("formData") || "");
-  json = { ...json, centext: centext };
+  const json = localStorage.getItem("formData") || "";
 
   const navigate = useNavigate();
 
@@ -21,19 +20,18 @@ const Banner = ({ centext }: BannerProps) => {
   useEffect(() => {
     const fetchBannerText = async () => {
       try {
-        const response = await fetch(backendAddress + "/recomendation/", {
+        const response = await fetch("http://localhost:8010/recomendation/", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-          body: JSON.stringify(json),
+          body: JSON.stringify({ ...JSON.parse(json), context: centext }),
         });
         console.log(response);
+
+        console.log(json);
 
         const data = await response.json();
         console.log(data);
 
-        setBannerText(data.text);
+        setBannerText(`Мы реакомендуем Вам ${data.prediction}`);
       } catch (error) {
         console.error("Ошибка при получении текста баннера:", error);
         setBannerText("Подключите более безопасный метод подписания");
@@ -44,6 +42,7 @@ const Banner = ({ centext }: BannerProps) => {
 
     fetchBannerText();
   }, []);
+
   return (
     <Skeleton visible={loading}>
       <Button

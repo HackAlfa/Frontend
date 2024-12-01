@@ -34,9 +34,11 @@ const Banner = ({ centext }: BannerProps) => {
         console.log(data);
 
         setBannerText(data.text);
-        setLoading(false);
       } catch (error) {
         console.error("Ошибка при получении текста баннера:", error);
+        setBannerText("Подключите более безопасный метод подписания");
+      } finally {
+        setLoading(false);
       }
     };
 

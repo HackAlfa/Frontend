@@ -20,6 +20,7 @@ const ModalOffer = ({ open, onClose, context }: ModalOfferProps) => {
   const navigate = useNavigate();
 
   const [modalText, setModalText] = useState("");
+  const [titleText, setTitleText] = useState("");
   const backendAddress =
     import.meta.env.BACKEND_ADDRESS || "http://localhost:8010";
 
@@ -39,9 +40,13 @@ const ModalOffer = ({ open, onClose, context }: ModalOfferProps) => {
         console.log(data);
 
         setModalText(data.text);
-        setLoading(false);
       } catch (error) {
         console.error("Ошибка при получении текста модалки:", error);
+        setTitleText("Подключите более безопасный метод подписания");
+        setModalText(
+          "Это позволит вам подписывать номного быстрее и повысит безопасность"
+        );
+      } finally {
         setLoading(false);
       }
     };
@@ -52,10 +57,7 @@ const ModalOffer = ({ open, onClose, context }: ModalOfferProps) => {
   return (
     <Modal open={open && !loading} onClose={onClose}>
       <Skeleton visible={loading}>
-        <Modal.Header
-          title={"Братан, проверь новый метод подписания!"}
-          hasCloser={true}
-        />
+        <Modal.Header title={titleText} hasCloser={true} />
         <Modal.Content>
           <Typography.Text weight="regular">{modalText}</Typography.Text>
           <Gap size={"2xl"} />
